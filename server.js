@@ -11,14 +11,60 @@ app.get("/",(req,res) => {
 
 app.get("/kobus",async (req,res) => {
     const ret = {};
-    const contact = {
+    let contact = {
         "ORCID": "0000-0001-9785-1175",
         "adres": "Instytut Informatyki, p. 511 Lublin",
         "telefon": "81 537 29 54",
         "mail": "adam.kobus@mail.umcs.pl"
     };
-    const plan = [];
-    
+    let plan = {
+        "poniedziałek": [],
+        "wtorek": [],
+        "środa": [],
+        "czwartek": [],
+        "piątek": []
+    };
+    await axios.get("http://moria.umcs.lublin.pl/api/activity_list_for_teacher",{
+        data: {
+            "id": 1037
+        }
+    })
+    .then(response => {
+        response["data"]["result"]["array"].map(a => a["event_array"].map(a => {
+            switch(a["weekday"]){
+                case 1:
+                    plan["poniedziałek"].push({
+                        "start_time": a["start_time"],
+                        "end_time": a["end_time"]
+                    });
+                    break;
+                case 2:
+                    plan["wtorek"].push({
+                        "start_time": a["start_time"],
+                        "end_time": a["end_time"]
+                    });
+                    break;
+                case 3:
+                    plan["środa"].push({
+                        "start_time": a["start_time"],
+                        "end_time": a["end_time"]
+                    });
+                    break;
+                case 4:
+                    plan["czwartek"].push({
+                        "start_time": a["start_time"],
+                        "end_time": a["end_time"]
+                    });
+                    break;
+                case 5:
+                    plan["piątek"].push({
+                        "start_time": a["start_time"],
+                        "end_time": a["end_time"]
+                    });
+                    break;
+            }
+        }))
+    });
     ret["contact"] = JSON.stringify(contact);
     ret["plan"] = JSON.stringify(plan);
     return res.end(JSON.stringify(ret));
@@ -32,8 +78,54 @@ app.get("/krajka",async (req,res) => {
         "telefon": "",
         "mail": "andrzej.krajka@mail.umcs.pl"
     };
-    const plan = [];
-
+    let plan = {
+        "poniedziałek": [],
+        "wtorek": [],
+        "środa": [],
+        "czwartek": [],
+        "piątek": []
+    };
+    await axios.get("http://moria.umcs.lublin.pl/api/activity_list_for_teacher",{
+        data: {
+            "id": 470
+        }
+    })
+    .then(response => {
+        response["data"]["result"]["array"].map(a => a["event_array"].map(a => {
+            switch(a["weekday"]){
+                case 1:
+                    plan["poniedziałek"].push({
+                        "start_time": a["start_time"],
+                        "end_time": a["end_time"]
+                    });
+                    break;
+                case 2:
+                    plan["wtorek"].push({
+                        "start_time": a["start_time"],
+                        "end_time": a["end_time"]
+                    });
+                    break;
+                case 3:
+                    plan["środa"].push({
+                        "start_time": a["start_time"],
+                        "end_time": a["end_time"]
+                    });
+                    break;
+                case 4:
+                    plan["czwartek"].push({
+                        "start_time": a["start_time"],
+                        "end_time": a["end_time"]
+                    });
+                    break;
+                case 5:
+                    plan["piątek"].push({
+                        "start_time": a["start_time"],
+                        "end_time": a["end_time"]
+                    });
+                    break;
+            }
+        }))
+    });
     ret["contact"] = JSON.stringify(contact);
     ret["plan"] = JSON.stringify(plan);
     return res.end(JSON.stringify(ret));
@@ -47,8 +139,54 @@ app.get("/sasak",async (req,res) => {
         "telefon": "",
         "mail": "anna.sasak-okon@mail.umcs.pl"
     };
-    const plan = [];
-
+    let plan = {
+        "poniedziałek": [],
+        "wtorek": [],
+        "środa": [],
+        "czwartek": [],
+        "piątek": []
+    };
+    await axios.get("http://moria.umcs.lublin.pl/api/activity_list_for_teacher",{
+        data: {
+            "id": 376
+        }
+    })
+    .then(response => {
+        response["data"]["result"]["array"].map(a => a["event_array"].map(a => {
+            switch(a["weekday"]){
+                case 1:
+                    plan["poniedziałek"].push({
+                        "start_time": a["start_time"],
+                        "end_time": a["end_time"]
+                    });
+                    break;
+                case 2:
+                    plan["wtorek"].push({
+                        "start_time": a["start_time"],
+                        "end_time": a["end_time"]
+                    });
+                    break;
+                case 3:
+                    plan["środa"].push({
+                        "start_time": a["start_time"],
+                        "end_time": a["end_time"]
+                    });
+                    break;
+                case 4:
+                    plan["czwartek"].push({
+                        "start_time": a["start_time"],
+                        "end_time": a["end_time"]
+                    });
+                    break;
+                case 5:
+                    plan["piątek"].push({
+                        "start_time": a["start_time"],
+                        "end_time": a["end_time"]
+                    });
+                    break;
+            }
+        }))
+    });
     ret["contact"] = JSON.stringify(contact);
     ret["plan"] = JSON.stringify(plan);
     return res.end(JSON.stringify(ret));
